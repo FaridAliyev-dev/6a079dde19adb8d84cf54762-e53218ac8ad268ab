@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // Early session gate to avoid flashing content
+      if (!sessionStorage.getItem('reis_dgp_auth')) {
+        document.documentElement.style.visibility = 'hidden';
+      }
+    </script>
+    <script type="module" src="/src/auth.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>ReisDGP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body class="docs-page">
+    <!-- Navbar -->
+    <nav class="navbar glass">
+      <div class="nav-container">
+        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: inherit; cursor: pointer;">
+          <svg width="28" height="28" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--accent);">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0626 13.2864C16.5851 13.2864 13.7095 16.0085 13.7095 19.4435C13.7095 22.8785 16.5182 25.6006 20.0626 25.6006C23.607 25.6006 26.4157 22.8785 26.4157 19.4435C26.4157 16.0085 23.5401 13.2864 20.0626 13.2864ZM20.0626 23.5266C17.722 23.5266 15.8495 21.7119 15.8495 19.4435C15.8495 17.1751 17.722 15.3603 20.0626 15.3603C22.4032 15.3603 24.2757 17.1751 24.2757 19.4435C24.2757 21.7119 22.4032 23.5266 20.0626 23.5266Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0624 6.09229C12.4386 6.09229 6.28613 12.055 6.28613 19.4435C6.28613 26.832 12.4386 32.7947 20.0624 32.7947C27.6861 32.7947 33.8386 26.832 33.8386 19.4435C33.8386 12.055 27.6861 6.09229 20.0624 6.09229ZM20.0624 29.6837C14.2443 29.6837 9.49613 25.0821 9.49613 19.4435C9.49613 13.8049 14.1774 9.20324 20.0624 9.20324C25.9474 9.20324 30.6286 13.7401 30.6286 19.4435C30.6286 25.1469 25.8805 29.6837 20.0624 29.6837Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0658 6.93484V1.03699C21.0658 0.453681 20.5977 0 20.0627 0C19.5277 0 19.0596 0.453681 19.0596 1.03699V6.93484C19.0596 7.32371 19.2602 7.64777 19.5946 7.77739V10.305C19.3271 10.4347 19.0596 10.6939 19.0596 11.0828V14.5178C19.0596 14.9715 19.3939 15.3604 19.8621 15.3604H20.2633C20.7314 15.3604 21.0658 14.9715 21.0658 14.5178V11.0828C21.0658 10.7587 20.8652 10.4347 20.5308 10.305V7.77739C20.8652 7.64777 21.0658 7.32371 21.0658 6.93484Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0658 31.9521V37.85C21.0658 38.4333 20.5977 38.8869 20.0627 38.8869C19.5277 38.8869 19.0596 38.4333 19.0596 37.85V31.9521C19.0596 31.5632 19.2602 31.2392 19.5946 31.1096V28.5171C19.3271 28.3875 19.0596 28.1282 19.0596 27.7394V24.3043C19.0596 23.8507 19.3939 23.4618 19.8621 23.4618H20.2633C20.7314 23.4618 21.0658 23.8507 21.0658 24.3043V27.7394C21.0658 28.0634 20.8652 28.3875 20.5308 28.5171V31.0447C20.7983 31.2392 21.0658 31.5632 21.0658 31.9521Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.4215 28.9709L32.7684 33.1836C33.1696 33.5725 33.8384 33.5725 34.2396 33.1836C34.6409 32.7947 34.6409 32.1466 34.2396 31.7578L29.8928 27.545C29.6253 27.2858 29.224 27.2209 28.8896 27.2858L27.0171 25.471C27.1509 25.2118 27.084 24.8229 26.8165 24.5637L24.2753 22.1008C23.9409 21.7768 23.4059 21.7768 23.1384 22.1008L22.8709 22.3601C22.5365 22.6841 22.5365 23.1378 22.8709 23.4619L25.4121 25.9247C25.6796 26.184 26.014 26.2488 26.3484 26.1191L28.2209 27.9339C28.0871 28.3227 28.154 28.7116 28.4215 28.9709Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2318 11.2772L5.88492 7.06443C5.48367 6.67556 5.48367 6.02745 5.88492 5.63858C6.28617 5.24971 6.95492 5.24971 7.35617 5.63858L11.703 9.85133C11.9705 10.1106 12.0374 10.4994 11.9705 10.8235L13.843 12.6382C14.1105 12.5086 14.5118 12.5734 14.7793 12.8327L17.3205 15.2955C17.6549 15.6196 17.6549 16.1381 17.3205 16.3973L17.053 16.6565C16.7187 16.9806 16.2505 16.9806 15.9162 16.6565L13.3749 14.1937C13.1074 13.9345 13.0405 13.6104 13.1743 13.2863L11.3018 11.4716C10.9005 11.6012 10.4993 11.5364 10.2318 11.2772Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M32.9691 20.4157H39.0548C39.6566 20.4157 40.1248 19.962 40.1248 19.4435C40.1248 18.925 39.6566 18.4713 39.0548 18.4713H32.9691C32.5679 18.4713 32.2335 18.6657 32.0998 18.9898H29.4247C29.291 18.7306 29.0235 18.4713 28.6222 18.4713H25.0779C24.6097 18.4713 24.2085 18.7954 24.2085 19.2491V19.6379C24.2085 20.0916 24.6097 20.4157 25.0779 20.4157H28.6222C28.9566 20.4157 29.291 20.2212 29.4247 19.8972H32.0329C32.2335 20.2212 32.5679 20.4157 32.9691 20.4157Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15563 20.4157H1.07C0.468125 20.4157 0 19.962 0 19.4435C0 18.925 0.468125 18.4713 1.07 18.4713H7.15563C7.55688 18.4713 7.89125 18.6657 8.025 18.9898H10.6331C10.7669 18.7306 11.0344 18.4713 11.4356 18.4713H14.98C15.4481 18.4713 15.8494 18.7954 15.8494 19.2491V19.6379C15.8494 20.0916 15.4481 20.4157 14.98 20.4157H11.4356C11.1013 20.4157 10.7669 20.2212 10.6331 19.8972H8.025C7.89125 20.1564 7.55688 20.4157 7.15563 20.4157Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M29.8932 11.2772L34.2401 7.06443C34.6414 6.67556 34.6414 6.02745 34.2401 5.63858C33.8389 5.24971 33.1701 5.24971 32.7689 5.63858L28.422 9.85133C28.1545 10.1106 28.0876 10.4994 28.1545 10.8235L26.282 12.6382C26.0145 12.5086 25.6132 12.5734 25.3457 12.8327L22.8045 15.2955C22.4701 15.6196 22.4701 16.1381 22.8045 16.3973L23.072 16.6565C23.4064 16.9806 23.8745 16.9806 24.2089 16.6565L26.7501 14.1937C27.0176 13.9345 27.0845 13.6104 26.9507 13.2863L28.8232 11.4716C29.2245 11.6012 29.6257 11.5364 29.8932 11.2772Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6362 28.9709L7.28928 33.1836C6.88803 33.5725 6.21928 33.5725 5.81803 33.1836C5.41678 32.7947 5.41678 32.1466 5.81803 31.7578L10.1649 27.545C10.4324 27.2858 10.8337 27.2209 11.168 27.2858L13.0405 25.471C12.9068 25.2118 12.9736 24.8229 13.2411 24.5637L15.7824 22.1008C16.1168 21.7768 16.6518 21.7768 16.9193 22.1008L17.1868 22.3601C17.5211 23.1378 17.5211 23.1378 17.1868 23.4619L14.6455 25.9247C14.378 26.184 14.0436 26.2488 13.7093 26.1191L11.8368 27.9339C11.9705 28.3227 11.9037 28.7116 11.6362 28.9709Z" fill="currentColor"/>
+          </svg>
+          <span class="logo-text">Reis <span class="accent-text">DGP</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#problem">Problem</a>
+          <a href="index.html#features">Features</a>
+          <a href="docs.html" class="active-link">Documentation</a>
+        </div>
+        <div class="nav-actions">
+          <div class="lang-switcher">
+            <div class="lang-option active" data-lang="en">EN</div>
+            <div class="lang-option" data-lang="az">AZ</div>
+            <div class="lang-option" data-lang="ru">RU</div>
+            <div class="lang-slider"></div>
+          </div>
+          <button class="btn btn-primary get-started-btn">Get Started</button>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-content">
+        <div class="mobile-nav-links">
+          <a href="index.html#problem" class="mobile-link">Problem</a>
+          <a href="index.html#features" class="mobile-link">Features</a>
+          <a href="docs.html" class="mobile-link">Documentation</a>
+        </div>
+        <button class="btn btn-primary btn-large get-started-btn" style="width: 100%;">Get Started</button>
+      </div>
+    </div>
+
+    <!-- Docs Layout -->
+    <main class="docs-layout container">
+      <aside class="docs-sidebar">
+        <nav class="sidebar-nav">
+          <div class="sidebar-indicator"></div>
+          <div class="sidebar-group">
+            <h5 class="sidebar-title" id="side-title-start">Getting Started</h5>
+            <ul>
+              <li><a href="#introduction" class="active" id="side-link-intro">Introduction</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-group">
+            <h5 class="sidebar-title" id="side-title-caps">Capabilities</h5>
+            <ul>
+              <li><a href="#core-capabilities" id="side-link-caps">Core Capabilities</a></li>
+              <li><a href="#data-discovery" id="side-link-disc">Data Discovery</a></li>
+              <li><a href="#data-lineage" id="side-link-lin">Data Lineage</a></li>
+              <li><a href="#data-governance" id="side-link-gov">Data Governance</a></li>
+              <li><a href="#data-observability" id="side-link-obs">Data Observability</a></li>
+              <li><a href="#metadata-integration" id="side-link-int">Metadata Integration</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-group">
+            <h5 class="sidebar-title" id="side-title-arch">Architecture</h5>
+            <ul>
+              <li><a href="#platform-architecture" id="side-link-arch">Platform Architecture</a></li>
+              <li><a href="#frontend-layer" id="side-link-front">Frontend Layer</a></li>
+              <li><a href="#backend-services" id="side-link-back">Backend Services</a></li>
+              <li><a href="#storage-layer" id="side-link-store">Storage Layer</a></li>
+              <li><a href="#ingestion-framework" id="side-link-ingest">Ingestion Framework</a></li>
+              <li><a href="#search" id="side-link-search">Search and Intelligence</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-group">
+            <h5 class="sidebar-title" id="side-title-ent">Enterprise</h5>
+            <ul>
+              <li><a href="#security" id="side-link-sec">Security</a></li>
+              <li><a href="#deployment" id="side-link-dep">Deployment</a></li>
+              <li><a href="#monitoring" id="side-link-mon">Monitoring & Operations</a></li>
+              <li><a href="#scalability" id="side-link-scale">Scalability</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-group">
+            <h5 class="sidebar-title" id="side-title-res">Resources</h5>
+            <ul>
+              <li><a href="#use-cases" id="side-link-use">Use Cases</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <article class="docs-content">
+        <section id="introduction" class="docs-section">
+          <div class="badge" id="docs-intro-badge">Documentation</div>
+          <h1 id="docs-intro-title">Introduction</h1>
+          <p class="lead" id="docs-intro-lead">Reis DGP (Data Governance Platform) is a modern metadata management and governance platform designed to help organizations discover, understand, monitor, and govern their data ecosystem at scale.</p>
+          <p id="docs-intro-p1">The platform centralizes metadata from databases, data warehouses, data lakes, BI tools, streaming systems, and transformation frameworks into a unified interface. Reis DGP enables engineering, analytics, governance, and business teams to gain visibility into their data assets, lineage, ownership, quality, and operational health.</p>
+          <p id="docs-intro-p2">Reis DGP is built for scalability, extensibility, and enterprise-grade governance, providing organizations with a reliable foundation for data discovery, observability, compliance, and metadata intelligence.</p>
+        </section>
+
+        <section id="core-capabilities" class="docs-section">
+          <h2 id="docs-caps-title">Core Capabilities</h2>
+          <p id="docs-caps-p1">Reis DGP is designed with four primary pillars that address the most critical needs of modern data organizations.</p>
+        </section>
+
+        <section id="data-discovery" class="docs-section">
+          <h3 id="docs-disc-title">Data Discovery</h3>
+          <p id="docs-disc-p1">Reis DGP provides a centralized search and discovery experience for organizational data assets. Users can quickly locate datasets, dashboards, pipelines, tables, columns, machine learning assets, and documentation through an intelligent metadata index.</p>
+          <div class="docs-grid">
+            <div class="docs-card">
+              <i class="ph ph-magnifying-glass"></i>
+              <h4 id="docs-card-search-t">Search</h4>
+              <p id="docs-card-search-p">Global metadata search across all assets.</p>
+            </div>
+            <div class="docs-card">
+              <i class="ph ph-tag"></i>
+              <h4 id="docs-card-tag-t">Tagging</h4>
+              <p id="docs-card-tag-p">Asset tagging and classification.</p>
+            </div>
+            <div class="docs-card">
+              <i class="ph ph-user-circle"></i>
+              <h4 id="docs-card-own-t">Ownership</h4>
+              <p id="docs-card-own-p">Granular ownership tracking.</p>
+            </div>
+          </div>
+          <ul class="docs-list">
+            <li id="docs-disc-l1">Dataset browsing and schema visualization</li>
+            <li id="docs-disc-l2">Business glossary support</li>
+            <li id="docs-disc-l3">Popularity and usage insights</li>
+            <li id="docs-disc-l4">Semantic metadata relationships</li>
+          </ul>
+        </section>
+
+        <section id="data-lineage" class="docs-section">
+          <h3 id="docs-lin-title">Data Lineage</h3>
+          <p id="docs-lin-p1">Reis DGP enables end-to-end lineage tracking across the data stack, helping teams understand how data flows between systems and transformations.</p>
+          <ul class="docs-list">
+            <li id="docs-lin-l1">Upstream and downstream dependency mapping</li>
+            <li id="docs-lin-l2">Column-level lineage tracking</li>
+            <li id="docs-lin-l3">Pipeline relationship visualization</li>
+            <li id="docs-lin-l4">Impact analysis and root cause investigation</li>
+            <li id="docs-lin-l5">Transformation flow monitoring</li>
+          </ul>
+          <div class="docs-info glass">
+             <p id="docs-lin-info">Lineage visualization helps teams safely modify pipelines, investigate failures, and understand how business metrics are generated.</p>
+          </div>
+        </section>
+
+        <section id="data-governance" class="docs-section">
+          <h3 id="docs-gov-title">Data Governance</h3>
+          <p id="docs-gov-p1">Reis DGP provides governance capabilities for enforcing standards, improving accountability, and maintaining trust across enterprise data systems.</p>
+          <ul class="docs-list">
+            <li id="docs-gov-l1">Role-based access control (RBAC)</li>
+            <li id="docs-gov-l2">Dataset ownership management</li>
+            <li id="docs-gov-l3">Stewardship workflows and metadata policies</li>
+            <li id="docs-gov-l4">Data classification and compliance support</li>
+            <li id="docs-gov-l5">Audit logging and approval flows</li>
+          </ul>
+        </section>
+
+        <section id="data-observability" class="docs-section">
+          <h3 id="docs-obs-title">Data Observability</h3>
+          <p id="docs-obs-p1">Reis DGP includes observability features that help monitor metadata health, data quality, and operational reliability.</p>
+          <div class="docs-grid">
+            <div class="docs-card">
+              <i class="ph ph-clock"></i>
+              <h4 id="docs-card-fresh-t">Freshness</h4>
+              <p id="docs-card-fresh-p">Freshness monitoring.</p>
+            </div>
+            <div class="docs-card">
+              <i class="ph ph-arrows-left-right"></i>
+              <h4 id="docs-card-schema-t">Schema</h4>
+              <p id="docs-card-schema-p">Change detection.</p>
+            </div>
+            <div class="docs-card">
+              <i class="ph ph-warning-circle"></i>
+              <h4 id="docs-card-alert-t">Alerts</h4>
+              <p id="docs-card-alert-p">Quality notifications.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="metadata-integration" class="docs-section">
+          <h3 id="docs-int-title">Metadata Integration</h3>
+          <p id="docs-int-p1">Reis DGP supports metadata extraction and synchronization from a wide range of systems and technologies.</p>
+          <div class="docs-tags">
+            <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Snowflake</span><span>BigQuery</span><span>Redshift</span><span>Apache Kafka</span><span>Apache Spark</span><span>dbt</span><span>Airflow</span><span>Tableau</span><span>Power BI</span><span>Looker</span>
+          </div>
+        </section>
+
+        <section id="platform-architecture" class="docs-section">
+          <h2 id="docs-arch-title">Platform Architecture</h2>
+          <p id="docs-arch-p1">Reis DGP is designed using a modular and scalable architecture optimized for enterprise metadata workloads.</p>
+        </section>
+
+        <section id="frontend-layer" class="docs-section">
+          <h3 id="docs-front-title">Frontend Layer</h3>
+          <p id="docs-front-p1">The frontend provides a responsive and user-friendly web interface for interacting with metadata assets and governance workflows.</p>
+          <ul class="docs-list">
+            <li id="docs-front-l1">Global metadata search</li>
+            <li id="docs-front-l2">Interactive lineage visualization</li>
+            <li id="docs-front-l3">Dataset exploration and documentation</li>
+            <li id="docs-front-l4">Access management and observability monitoring</li>
+          </ul>
+        </section>
+
+        <section id="backend-services" class="docs-section">
+          <h3 id="docs-back-title">Backend Services</h3>
+          <p id="docs-back-p1">Backend services handle metadata processing, indexing, APIs, authentication, authorization, lineage computation, and ingestion orchestration.</p>
+        </section>
+
+        <section id="storage-layer" class="docs-section">
+          <h3 id="docs-store-title">Storage Layer</h3>
+          <p id="docs-store-p1">Reis DGP uses multiple storage technologies optimized for different metadata workloads.</p>
+          <ul class="docs-list">
+            <li id="docs-store-l1">Graph databases for lineage and relationships</li>
+            <li id="docs-store-l2">Search indexes for fast discovery</li>
+            <li id="docs-store-l3">Document stores for metadata persistence</li>
+            <li id="docs-store-l4">Relational databases for operational data</li>
+            <li id="docs-store-l5">Object storage for ingestion artifacts</li>
+          </ul>
+        </section>
+
+        <section id="ingestion-framework" class="docs-section">
+          <h3 id="docs-ingest-title">Ingestion Framework</h3>
+          <p id="docs-ingest-p1">The ingestion framework is responsible for collecting, transforming, validating, and synchronizing metadata from external systems.</p>
+          <ul class="docs-list">
+            <li id="docs-ingest-l1">Scheduled ingestion jobs and real-time synchronization</li>
+            <li id="docs-ingest-l2">Incremental metadata updates</li>
+            <li id="docs-ingest-l3">Connector SDK support and schema extraction</li>
+            <li id="docs-ingest-l4">Usage analytics ingestion</li>
+          </ul>
+        </section>
+
+        <section id="search" class="docs-section">
+          <h3 id="docs-search-title">Search and Metadata Intelligence</h3>
+          <p id="docs-search-p1">Reis DGP includes an advanced metadata search engine capable of indexing structured and unstructured metadata.</p>
+          <ul class="docs-list">
+            <li id="docs-search-l1">Full-text metadata and column-level search</li>
+            <li id="docs-search-l2">Faceted filtering and tag-based discovery</li>
+            <li id="docs-search-l3">Popularity ranking and AI-assisted suggestions</li>
+          </ul>
+        </section>
+
+        <section id="security" class="docs-section">
+          <h2 id="docs-sec-title">Security</h2>
+          <p id="docs-sec-p1">Security is integrated into every layer of Reis DGP. Single Sign-On (SSO), OAuth2, SAML, and granular RBAC ensure that your metadata remains protected.</p>
+        </section>
+
+        <section id="deployment" class="docs-section">
+          <h2 id="docs-dep-title">Deployment</h2>
+          <p id="docs-dep-p1">Reis DGP supports deployment across local, cloud, hybrid, and Kubernetes-based environments.</p>
+          <div class="docs-tags">
+             <span>Docker Compose</span><span>Kubernetes</span><span>Bare-metal</span><span>Cloud-native</span>
+          </div>
+        </section>
+
+        <section id="monitoring" class="docs-section">
+          <h2 id="docs-mon-title">Monitoring & Operations</h2>
+          <p id="docs-mon-p1">Reis DGP provides operational monitoring for platform reliability and performance management.</p>
+        </section>
+
+        <section id="scalability" class="docs-section">
+          <h2 id="docs-scale-title">Scalability</h2>
+          <p id="docs-scale-p1">Reis DGP is designed for enterprise-scale metadata environments, supporting organisations managing millions of metadata entities.</p>
+        </section>
+
+        <section id="use-cases" class="docs-section">
+          <h2 id="docs-use-title">Use Cases</h2>
+          <ul class="docs-list">
+            <li id="docs-use-l1">Enterprise data cataloging</li>
+            <li id="docs-use-l2">Regulatory compliance</li>
+            <li id="docs-use-l3">Data quality monitoring</li>
+            <li id="docs-use-l4">Impact analysis</li>
+            <li id="docs-use-l5">AI and machine learning governance</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0626 13.2864C16.5851 13.2864 13.7095 16.0085 13.7095 19.4435C13.7095 22.8785 16.5182 25.6006 20.0626 25.6006C23.607 25.6006 26.4157 22.8785 26.4157 19.4435C26.4157 16.0085 23.5401 13.2864 20.0626 13.2864ZM20.0626 23.5266C17.722 23.5266 15.8495 21.7119 15.8495 19.4435C15.8495 17.1751 17.722 15.3603 20.0626 15.3603C22.4032 15.3603 24.2757 17.1751 24.2757 19.4435C24.2757 21.7119 22.4032 23.5266 20.0626 23.5266Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0624 6.09229C12.4386 6.09229 6.28613 12.055 6.28613 19.4435C6.28613 26.832 12.4386 32.7947 20.0624 32.7947C27.6861 32.7947 33.8386 26.832 33.8386 19.4435C33.8386 12.055 27.6861 6.09229 20.0624 6.09229ZM20.0624 29.6837C14.2443 29.6837 9.49613 25.0821 9.49613 19.4435C9.49613 13.8049 14.1774 9.20324 20.0624 9.20324C25.9474 9.20324 30.6286 13.7401 30.6286 19.4435C30.6286 25.1469 25.8805 29.6837 20.0624 29.6837Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0658 6.93484V1.03699C21.0658 0.453681 20.5977 0 20.0627 0C19.5277 0 19.0596 0.453681 19.0596 1.03699V6.93484C19.0596 7.32371 19.2602 7.64777 19.5946 7.77739V10.305C19.3271 10.4347 19.0596 10.6939 19.0596 11.0828V14.5178C19.0596 14.9715 19.3939 15.3604 19.8621 15.3604H20.2633C20.7314 15.3604 21.0658 14.9715 21.0658 14.5178V11.0828C21.0658 10.7587 20.8652 10.4347 20.5308 10.305V7.77739C20.8652 7.64777 21.0658 7.32371 21.0658 6.93484Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0658 31.9521V37.85C21.0658 38.4333 20.5977 38.8869 20.0627 38.8869C19.5277 38.8869 19.0596 38.4333 19.0596 37.85V31.9521C19.0596 31.5632 19.2602 31.2392 19.5946 31.1096V28.5171C19.3271 28.3875 19.0596 28.1282 19.0596 27.7394V24.3043C19.0596 23.8507 19.3939 23.4618 19.8621 23.4618H20.2633C20.7314 23.4618 21.0658 23.8507 21.0658 24.3043V27.7394C21.0658 28.0634 20.8652 28.3875 20.5308 28.5171V31.0447C20.7983 31.2392 21.0658 31.5632 21.0658 31.9521Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M28.4215 28.9709L32.7684 33.1836C33.1696 33.5725 33.8384 33.5725 34.2396 33.1836C34.6409 32.7947 34.6409 32.1466 34.2396 31.7578L29.8928 27.545C29.6253 27.2858 29.224 27.2209 28.8896 27.2858L27.0171 25.471C27.1509 25.2118 27.084 24.8229 26.8165 24.5637L24.2753 22.1008C23.9409 21.7768 23.4059 21.7768 23.1384 22.1008L22.8709 22.3601C22.5365 22.6841 22.5365 23.1378 22.8709 23.4619L25.4121 25.9247C25.6796 26.184 26.014 26.2488 26.3484 26.1191L28.2209 27.9339C28.0871 28.3227 28.154 28.7116 28.4215 28.9709Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2318 11.2772L5.88492 7.06443C5.48367 6.67556 5.48367 6.02745 5.88492 5.63858C6.28617 5.24971 6.95492 5.24971 7.35617 5.63858L11.703 9.85133C11.9705 10.1106 12.0374 10.4994 11.9705 10.8235L13.843 12.6382C14.1105 12.5086 14.5118 12.5734 14.7793 12.8327L17.3205 15.2955C17.6549 15.6196 17.6549 16.1381 17.3205 16.3973L17.053 16.6565C16.7187 16.9806 16.2505 16.9806 15.9162 16.6565L13.3749 14.1937C13.1074 13.9345 13.0405 13.6104 13.1743 13.2863L11.3018 11.4716C10.9005 11.6012 10.4993 11.5364 10.2318 11.2772Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M32.9691 20.4157H39.0548C39.6566 20.4157 40.1248 19.962 40.1248 19.4435C40.1248 18.925 39.6566 18.4713 39.0548 18.4713H32.9691C32.5679 18.4713 32.2335 18.6657 32.0998 18.9898H29.4247C29.291 18.7306 29.0235 18.4713 28.6222 18.4713H25.0779C24.6097 18.4713 24.2085 18.7954 24.2085 19.2491V19.6379C24.2085 20.0916 24.6097 20.4157 25.0779 20.4157H28.6222C28.9566 20.4157 29.291 20.2212 29.4247 19.8972H32.0329C32.2335 20.2212 32.5679 20.4157 32.9691 20.4157Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15563 20.4157H1.07C0.468125 20.4157 0 19.962 0 19.4435C0 18.925 0.468125 18.4713 1.07 18.4713H7.15563C7.55688 18.4713 7.89125 18.6657 8.025 18.9898H10.6331C10.7669 18.7306 11.0344 18.4713 11.4356 18.4713H14.98C15.4481 18.4713 15.8494 18.7954 15.8494 19.2491V19.6379C15.8494 20.0916 15.4481 20.4157 14.98 20.4157H11.4356C11.1013 20.4157 10.7669 20.2212 10.6331 19.8972H8.025C7.89125 20.1564 7.55688 20.4157 7.15563 20.4157Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M29.8932 11.2772L34.2401 7.06443C34.6414 6.67556 34.6414 6.02745 34.2401 5.63858C33.8389 5.24971 33.1701 5.24971 32.7689 5.63858L28.422 9.85133C28.1545 10.1106 28.0876 10.4994 28.1545 10.8235L26.282 12.6382C26.0145 12.5086 25.6132 12.5734 25.3457 12.8327L22.8045 15.2955C22.4701 15.6196 22.4701 16.1381 22.8045 16.3973L23.072 16.6565C23.4064 16.9806 23.8745 16.9806 24.2089 16.6565L26.7501 14.1937C27.0176 13.9345 27.0845 13.6104 26.9507 13.2863L28.8232 11.4716C29.2245 11.6012 29.6257 11.5364 29.8932 11.2772Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6362 28.9709L7.28928 33.1836C6.88803 33.5725 6.21928 33.5725 5.81803 33.1836C5.41678 32.7947 5.41678 32.1466 5.81803 31.7578L10.1649 27.545C10.4324 27.2858 10.8337 27.2209 11.168 27.2858L13.0405 25.471C12.9068 25.2118 12.9736 24.8229 13.2411 24.5637L15.7824 22.1008C16.1168 21.7768 16.6518 21.7768 16.9193 22.1008L17.1868 22.3601C17.5211 23.1378 17.5211 23.1378 17.1868 23.4619L14.6455 25.9247C14.378 26.184 14.0436 26.2488 13.7093 26.1191L11.8368 27.9339C11.9705 28.3227 11.9037 28.7116 11.6362 28.9709Z" fill="currentColor"/>
+            </svg>
+            <span class="logo-text">Reis <span class="accent-text">DGP</span></span>
+          </div>
+          <p class="footer-tagline">Open Metadata Management Platform</p>
+        </div>
+        <div class="footer-links">
+          <a href="docs.html">Documentation</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

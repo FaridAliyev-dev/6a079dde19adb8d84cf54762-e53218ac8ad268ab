@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script>
+    // Early session gate to avoid flashing content
+    if (!sessionStorage.getItem('reis_dgp_auth')) {
+      document.documentElement.style.visibility = 'hidden';
+    }
+  </script>
+  <script type="module" src="/src/auth.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>ReisDGP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Note: using Phosphor Icons or similar lightweight icon library is good, but for now we will just use basic svgs or text if no external lib is needed. We can use unpkg for Phosphor if needed. -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar glass">
+    <div class="nav-container">
+      <a href="#" class="logo"
+        style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: inherit; cursor: pointer;">
+        <svg width="28" height="28" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg"
+          style="color: var(--accent);">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M20.0626 13.2864C16.5851 13.2864 13.7095 16.0085 13.7095 19.4435C13.7095 22.8785 16.5182 25.6006 20.0626 25.6006C23.607 25.6006 26.4157 22.8785 26.4157 19.4435C26.4157 16.0085 23.5401 13.2864 20.0626 13.2864ZM20.0626 23.5266C17.722 23.5266 15.8495 21.7119 15.8495 19.4435C15.8495 17.1751 17.722 15.3603 20.0626 15.3603C22.4032 15.3603 24.2757 17.1751 24.2757 19.4435C24.2757 21.7119 22.4032 23.5266 20.0626 23.5266Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M20.0624 6.09229C12.4386 6.09229 6.28613 12.055 6.28613 19.4435C6.28613 26.832 12.4386 32.7947 20.0624 32.7947C27.6861 32.7947 33.8386 26.832 33.8386 19.4435C33.8386 12.055 27.6861 6.09229 20.0624 6.09229ZM20.0624 29.6837C14.2443 29.6837 9.49613 25.0821 9.49613 19.4435C9.49613 13.8049 14.1774 9.20324 20.0624 9.20324C25.9474 9.20324 30.6286 13.7401 30.6286 19.4435C30.6286 25.1469 25.8805 29.6837 20.0624 29.6837Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M21.0658 6.93484V1.03699C21.0658 0.453681 20.5977 0 20.0627 0C19.5277 0 19.0596 0.453681 19.0596 1.03699V6.93484C19.0596 7.32371 19.2602 7.64777 19.5946 7.77739V10.305C19.3271 10.4347 19.0596 10.6939 19.0596 11.0828V14.5178C19.0596 14.9715 19.3939 15.3604 19.8621 15.3604H20.2633C20.7314 15.3604 21.0658 14.9715 21.0658 14.5178V11.0828C21.0658 10.7587 20.8652 10.4347 20.5308 10.305V7.77739C20.8652 7.64777 21.0658 7.32371 21.0658 6.93484Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M21.0658 31.9521V37.85C21.0658 38.4333 20.5977 38.8869 20.0627 38.8869C19.5277 38.8869 19.0596 38.4333 19.0596 37.85V31.9521C19.0596 31.5632 19.2602 31.2392 19.5946 31.1096V28.5171C19.3271 28.3875 19.0596 28.1282 19.0596 27.7394V24.3043C19.0596 23.8507 19.3939 23.4618 19.8621 23.4618H20.2633C20.7314 23.4618 21.0658 23.8507 21.0658 24.3043V27.7394C21.0658 28.0634 20.8652 28.3875 20.5308 28.5171V31.0447C20.7983 31.2392 21.0658 31.5632 21.0658 31.9521Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M28.4215 28.9709L32.7684 33.1836C33.1696 33.5725 33.8384 33.5725 34.2396 33.1836C34.6409 32.7947 34.6409 32.1466 34.2396 31.7578L29.8928 27.545C29.6253 27.2858 29.224 27.2209 28.8896 27.2858L27.0171 25.471C27.1509 25.2118 27.084 24.8229 26.8165 24.5637L24.2753 22.1008C23.9409 21.7768 23.4059 21.7768 23.1384 22.1008L22.8709 22.3601C22.5365 22.6841 22.5365 23.1378 22.8709 23.4619L25.4121 25.9247C25.6796 26.184 26.014 26.2488 26.3484 26.1191L28.2209 27.9339C28.0871 28.3227 28.154 28.7116 28.4215 28.9709Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M10.2318 11.2772L5.88492 7.06443C5.48367 6.67556 5.48367 6.02745 5.88492 5.63858C6.28617 5.24971 6.95492 5.24971 7.35617 5.63858L11.703 9.85133C11.9705 10.1106 12.0374 10.4994 11.9705 10.8235L13.843 12.6382C14.1105 12.5086 14.5118 12.5734 14.7793 12.8327L17.3205 15.2955C17.6549 15.6196 17.6549 16.1381 17.3205 16.3973L17.053 16.6565C16.7187 16.9806 16.2505 16.9806 15.9162 16.6565L13.3749 14.1937C13.1074 13.9345 13.0405 13.6104 13.1743 13.2863L11.3018 11.4716C10.9005 11.6012 10.4993 11.5364 10.2318 11.2772Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M32.9691 20.4157H39.0548C39.6566 20.4157 40.1248 19.962 40.1248 19.4435C40.1248 18.925 39.6566 18.4713 39.0548 18.4713H32.9691C32.5679 18.4713 32.2335 18.6657 32.0998 18.9898H29.4247C29.291 18.7306 29.0235 18.4713 28.6222 18.4713H25.0779C24.6097 18.4713 24.2085 18.7954 24.2085 19.2491V19.6379C24.2085 20.0916 24.6097 20.4157 25.0779 20.4157H28.6222C28.9566 20.4157 29.291 20.2212 29.4247 19.8972H32.0329C32.2335 20.2212 32.5679 20.4157 32.9691 20.4157Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M7.15563 20.4157H1.07C0.468125 20.4157 0 19.962 0 19.4435C0 18.925 0.468125 18.4713 1.07 18.4713H7.15563C7.55688 18.4713 7.89125 18.6657 8.025 18.9898H10.6331C10.7669 18.7306 11.0344 18.4713 11.4356 18.4713H14.98C15.4481 18.4713 15.8494 18.7954 15.8494 19.2491V19.6379C15.8494 20.0916 15.4481 20.4157 14.98 20.4157H11.4356C11.1013 20.4157 10.7669 20.2212 10.6331 19.8972H8.025C7.89125 20.1564 7.55688 20.4157 7.15563 20.4157Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M29.8932 11.2772L34.2401 7.06443C34.6414 6.67556 34.6414 6.02745 34.2401 5.63858C33.8389 5.24971 33.1701 5.24971 32.7689 5.63858L28.422 9.85133C28.1545 10.1106 28.0876 10.4994 28.1545 10.8235L26.282 12.6382C26.0145 12.5086 25.6132 12.5734 25.3457 12.8327L22.8045 15.2955C22.4701 15.6196 22.4701 16.1381 22.8045 16.3973L23.072 16.6565C23.4064 16.9806 23.8745 16.9806 24.2089 16.6565L26.7501 14.1937C27.0176 13.9345 27.0845 13.6104 26.9507 13.2863L28.8232 11.4716C29.2245 11.6012 29.6257 11.5364 29.8932 11.2772Z"
+            fill="currentColor" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11.6362 28.9709L7.28928 33.1836C6.88803 33.5725 6.21928 33.5725 5.81803 33.1836C5.41678 32.7947 5.41678 32.1466 5.81803 31.7578L10.1649 27.545C10.4324 27.2858 10.8337 27.2209 11.168 27.2858L13.0405 25.471C12.9068 25.2118 12.9736 24.8229 13.2411 24.5637L15.7824 22.1008C16.1168 21.7768 16.6518 21.7768 16.9193 22.1008L17.1868 22.3601C17.5211 22.6841 17.5211 23.1378 17.1868 23.4619L14.6455 25.9247C14.378 26.184 14.0436 26.2488 13.7093 26.1191L11.8368 27.9339C11.9705 28.3227 11.9037 28.7116 11.6362 28.9709Z"
+            fill="currentColor" />
+        </svg>
+        <span class="logo-text">Reis <span class="accent-text">DGP</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#features">Features</a>
+        <a href="docs.html">Documentation</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <div class="lang-option active" data-lang="en">EN</div>
+          <div class="lang-option" data-lang="az">AZ</div>
+          <div class="lang-option" data-lang="ru">RU</div>
+          <div class="lang-slider"></div>
+        </div>
+        <button class="btn btn-primary get-started-btn">Get Started</button>
+      </div>
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-content">
+      <div class="mobile-nav-links">
+        <a href="#problem" class="mobile-link">Problem</a>
+        <a href="#features" class="mobile-link">Features</a>
+        <a href="docs.html" class="mobile-link">Documentation</a>
+      </div>
+      <div class="mobile-lang-switcher">
+        <div class="lang-switcher">
+          <div class="lang-option" data-lang="en">EN</div>
+          <div class="lang-option" data-lang="az">AZ</div>
+          <div class="lang-option" data-lang="ru">RU</div>
+          <div class="lang-slider"></div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-large get-started-btn" style="width: 100%;">Get Started</button>
+    </div>
+  </div>
+
+  <!-- 1. Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="badge">Metadata Management Platform</div>
+      <h1 class="hero-title">The Context Layer for Your<br>Data & AI Stack</h1>
+      <p class="hero-subtitle">A centralized metadata platform to discover, govern, and observe every data asset in your
+        organization. One graph to connect them all.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-large">Get Started <i class="ph ph-arrow-right"></i></button>
+        <a href="docs.html" class="btn btn-secondary btn-large" style="text-decoration: none;">View Documentation</a>
+      </div>
+      <!-- Optional Mockup Preview -->
+      <div class="hero-mockup glass">
+        <div class="mockup-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-sidebar"></div>
+          <div class="mockup-main">
+            <div class="mockup-card"></div>
+            <div class="mockup-card"></div>
+            <div class="mockup-graph"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Problem Section -->
+  <section class="problem section" id="problem">
+    <div class="container text-center">
+      <h2 class="section-title">Your Metadata is Scattered. Your Teams Feel It.</h2>
+      <p class="section-desc max-w-md">Datasets live across warehouses, lakes, dashboards, and ML pipelines — but nobody
+        owns the full picture. Engineers grep Slack for table owners, analysts guess at freshness, and governance is a
+        spreadsheet. Without a centralized metadata layer, discovery is broken and lineage is invisible.</p>
+    </div>
+  </section>
+
+  <!-- 3. Three Core Pillars -->
+  <section class="pillars section">
+    <div class="container">
+      <div class="pillars-grid">
+        <!-- Pillar 1 -->
+        <div class="card pillar-card">
+          <div class="card-icon"><i class="ph ph-magnifying-glass"></i></div>
+          <h3>Data Discovery</h3>
+          <ul class="feature-list">
+            <li><i class="ph ph-check-circle"></i> Search across all datasets and entities</li>
+            <li><i class="ph ph-check-circle"></i> Rich metadata relationships and tags</li>
+            <li><i class="ph ph-check-circle"></i> Instant context on any data asset</li>
+          </ul>
+        </div>
+        <!-- Pillar 2 -->
+        <div class="card pillar-card">
+          <div class="card-icon"><i class="ph ph-shield-check"></i></div>
+          <h3>Data Governance</h3>
+          <ul class="feature-list">
+            <li><i class="ph ph-check-circle"></i> Ownership and domain assignment</li>
+            <li><i class="ph ph-check-circle"></i> Glossary terms and classification tags</li>
+            <li><i class="ph ph-check-circle"></i> Fine-grained access policies</li>
+          </ul>
+        </div>
+        <!-- Pillar 3 -->
+        <div class="card pillar-card">
+          <div class="card-icon"><i class="ph ph-activity"></i></div>
+          <h3>Data Observability</h3>
+          <ul class="feature-list">
+            <li><i class="ph ph-check-circle"></i> End-to-end column-level lineage</li>
+            <li><i class="ph ph-check-circle"></i> Freshness and quality monitoring</li>
+            <li><i class="ph ph-check-circle"></i> Schema change detection and alerts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Key Features Section -->
+  <section class="features section bg-darker" id="features">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Everything You Need to Manage Metadata at Scale</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="ph ph-git-branch text-accent"></i>
+          <h4>End-to-End Lineage</h4>
+          <p>Trace data flows from ingestion to dashboard. Understand upstream dependencies and downstream impact before
+            making changes.</p>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-robot text-accent"></i>
+          <h4>Automated Documentation</h4>
+          <p>Auto-propagate descriptions, tags, and glossary terms across your metadata graph. Less manual work, more
+            consistency.</p>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-plugs-connected text-accent"></i>
+          <h4>100+ Integrations</h4>
+          <p>Native connectors for Snowflake, BigQuery, dbt, Airflow, Kafka, Spark, and the rest of your stack.</p>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-shield-warning text-accent"></i>
+          <h4>Data Quality Signals</h4>
+          <p>Surface freshness, volume, and schema assertions directly on your datasets. Know what's broken before your
+            stakeholders do.</p>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-lock-key text-accent"></i>
+          <h4>Role-Based Access Control</h4>
+          <p>Define granular policies per domain, dataset, or entity type. LDAP, OIDC, and SSO supported out of the box.
+          </p>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-magnifying-glass-plus text-accent"></i>
+          <h4>Centralized Metadata Graph</h4>
+          <p>Every dataset, pipeline, dashboard, and ML model — connected in a single, searchable knowledge graph.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Technical Highlights -->
+  <section class="tech section" id="tech">
+    <div class="container">
+      <div class="tech-container glass">
+        <div class="tech-content">
+          <h2 class="section-title">Built for Modern Data Infrastructure</h2>
+          <p class="section-desc">Extensible, scalable, and designed to run where your data already lives.</p>
+          <ul class="tech-list">
+            <li>Real-time metadata ingestion via push and pull</li>
+            <li>Flexible APIs (GraphQL + OpenAPI)</li>
+            <li>SDKs for Python, Java, and Go</li>
+            <li>Deploys on Docker, Kubernetes, or managed cloud</li>
+          </ul>
+        </div>
+        <div class="tech-visual">
+          <pre class="code-block"><code>{
+  "event": "schema_change",
+  "table": "users",
+  "action": "column_added",
+  "details": {
+    "column": "last_login",
+    "type": "TIMESTAMP"
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Integrations Section -->
+  <section class="integrations section">
+    <div class="container text-center">
+      <h2 class="section-title">Works With Your Stack</h2>
+      <div class="logo-grid">
+        <!-- Grayscale logos -> color on hover -->
+        <div class="logo-item">Snowflake</div>
+        <div class="logo-item">BigQuery</div>
+        <div class="logo-item">dbt</div>
+        <div class="logo-item">Airflow</div>
+        <div class="logo-item">Tableau</div>
+        <div class="logo-item">Looker</div>
+        <div class="logo-item">Kafka</div>
+        <div class="logo-item">AWS</div>
+        <div class="logo-item">GCP</div>
+        <div class="logo-item">Azure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. How It Works -->
+  <section class="how-it-works section bg-darker">
+    <div class="container">
+      <h2 class="section-title text-center">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Connect Your Sources</h4>
+          <p>Point Reis DGP at your warehouses, orchestrators, and BI tools using pre-built connectors.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Build the Metadata Graph</h4>
+          <p>Metadata is ingested continuously — schemas, lineage, ownership, and tags flow into a unified graph.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Discover, Govern, Observe</h4>
+          <p>Your team searches, annotates, and monitors data assets from a single pane. Context is always up to date.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Call to Action -->
+  <section class="cta section">
+    <div class="cta-bg glow"></div>
+    <div class="container text-center relative z-10">
+      <h2 class="section-title">Stop guessing. Start governing.</h2>
+      <div class="cta-buttons">
+        <button class="btn btn-primary btn-large">Contact Us</button>
+        <button class="btn btn-secondary btn-large glass">Try It Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M20.0626 13.2864C16.5851 13.2864 13.7095 16.0085 13.7095 19.4435C13.7095 22.8785 16.5182 25.6006 20.0626 25.6006C23.607 25.6006 26.4157 22.8785 26.4157 19.4435C26.4157 16.0085 23.5401 13.2864 20.0626 13.2864ZM20.0626 23.5266C17.722 23.5266 15.8495 21.7119 15.8495 19.4435C15.8495 17.1751 17.722 15.3603 20.0626 15.3603C22.4032 15.3603 24.2757 17.1751 24.2757 19.4435C24.2757 21.7119 22.4032 23.5266 20.0626 23.5266Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M20.0624 6.09229C12.4386 6.09229 6.28613 12.055 6.28613 19.4435C6.28613 26.832 12.4386 32.7947 20.0624 32.7947C27.6861 32.7947 33.8386 26.832 33.8386 19.4435C33.8386 12.055 27.6861 6.09229 20.0624 6.09229ZM20.0624 29.6837C14.2443 29.6837 9.49613 25.0821 9.49613 19.4435C9.49613 13.8049 14.1774 9.20324 20.0624 9.20324C25.9474 9.20324 30.6286 13.7401 30.6286 19.4435C30.6286 25.1469 25.8805 29.6837 20.0624 29.6837Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M21.0658 6.93484V1.03699C21.0658 0.453681 20.5977 0 20.0627 0C19.5277 0 19.0596 0.453681 19.0596 1.03699V6.93484C19.0596 7.32371 19.2602 7.64777 19.5946 7.77739V10.305C19.3271 10.4347 19.0596 10.6939 19.0596 11.0828V14.5178C19.0596 14.9715 19.3939 15.3604 19.8621 15.3604H20.2633C20.7314 15.3604 21.0658 14.9715 21.0658 14.5178V11.0828C21.0658 10.7587 20.8652 10.4347 20.5308 10.305V7.77739C20.8652 7.64777 21.0658 7.32371 21.0658 6.93484Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M21.0658 31.9521V37.85C21.0658 38.4333 20.5977 38.8869 20.0627 38.8869C19.5277 38.8869 19.0596 38.4333 19.0596 37.85V31.9521C19.0596 31.5632 19.2602 31.2392 19.5946 31.1096V28.5171C19.3271 28.3875 19.0596 28.1282 19.0596 27.7394V24.3043C19.0596 23.8507 19.3939 23.4618 19.8621 23.4618H20.2633C20.7314 23.4618 21.0658 23.8507 21.0658 24.3043V27.7394C21.0658 28.0634 20.8652 28.3875 20.5308 28.5171V31.0447C20.7983 31.2392 21.0658 31.5632 21.0658 31.9521Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M28.4215 28.9709L32.7684 33.1836C33.1696 33.5725 33.8384 33.5725 34.2396 33.1836C34.6409 32.7947 34.6409 32.1466 34.2396 31.7578L29.8928 27.545C29.6253 27.2858 29.224 27.2209 28.8896 27.2858L27.0171 25.471C27.1509 25.2118 27.084 24.8229 26.8165 24.5637L24.2753 22.1008C23.9409 21.7768 23.4059 21.7768 23.1384 22.1008L22.8709 22.3601C22.5365 22.6841 22.5365 23.1378 22.8709 23.4619L25.4121 25.9247C25.6796 26.184 26.014 26.2488 26.3484 26.1191L28.2209 27.9339C28.0871 28.3227 28.154 28.7116 28.4215 28.9709Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M10.2318 11.2772L5.88492 7.06443C5.48367 6.67556 5.48367 6.02745 5.88492 5.63858C6.28617 5.24971 6.95492 5.24971 7.35617 5.63858L11.703 9.85133C11.9705 10.1106 12.0374 10.4994 11.9705 10.8235L13.843 12.6382C14.1105 12.5086 14.5118 12.5734 14.7793 12.8327L17.3205 15.2955C17.6549 15.6196 17.6549 16.1381 17.3205 16.3973L17.053 16.6565C16.7187 16.9806 16.2505 16.9806 15.9162 16.6565L13.3749 14.1937C13.1074 13.9345 13.0405 13.6104 13.1743 13.2863L11.3018 11.4716C10.9005 11.6012 10.4993 11.5364 10.2318 11.2772Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M32.9691 20.4157H39.0548C39.6566 20.4157 40.1248 19.962 40.1248 19.4435C40.1248 18.925 39.6566 18.4713 39.0548 18.4713H32.9691C32.5679 18.4713 32.2335 18.6657 32.0998 18.9898H29.4247C29.291 18.7306 29.0235 18.4713 28.6222 18.4713H25.0779C24.6097 18.4713 24.2085 18.7954 24.2085 19.2491V19.6379C24.2085 20.0916 24.6097 20.4157 25.0779 20.4157H28.6222C28.9566 20.4157 29.291 20.2212 29.4247 19.8972H32.0329C32.2335 20.2212 32.5679 20.4157 32.9691 20.4157Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M7.15563 20.4157H1.07C0.468125 20.4157 0 19.962 0 19.4435C0 18.925 0.468125 18.4713 1.07 18.4713H7.15563C7.55688 18.4713 7.89125 18.6657 8.025 18.9898H10.6331C10.7669 18.7306 11.0344 18.4713 11.4356 18.4713H14.98C15.4481 18.4713 15.8494 18.7954 15.8494 19.2491V19.6379C15.8494 20.0916 15.4481 20.4157 14.98 20.4157H11.4356C11.1013 20.4157 10.7669 20.2212 10.6331 19.8972H8.025C7.89125 20.1564 7.55688 20.4157 7.15563 20.4157Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M29.8932 11.2772L34.2401 7.06443C34.6414 6.67556 34.6414 6.02745 34.2401 5.63858C33.8389 5.24971 33.1701 5.24971 32.7689 5.63858L28.422 9.85133C28.1545 10.1106 28.0876 10.4994 28.1545 10.8235L26.282 12.6382C26.0145 12.5086 25.6132 12.5734 25.3457 12.8327L22.8045 15.2955C22.4701 15.6196 22.4701 16.1381 22.8045 16.3973L23.072 16.6565C23.4064 16.9806 23.8745 16.9806 24.2089 16.6565L26.7501 14.1937C27.0176 13.9345 27.0845 13.6104 26.9507 13.2863L28.8232 11.4716C29.2245 11.6012 29.6257 11.5364 29.8932 11.2772Z"
+              fill="currentColor" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11.6362 28.9709L7.28928 33.1836C6.88803 33.5725 6.21928 33.5725 5.81803 33.1836C5.41678 32.7947 5.41678 32.1466 5.81803 31.7578L10.1649 27.545C10.4324 27.2858 10.8337 27.2209 11.168 27.2858L13.0405 25.471C12.9068 25.2118 12.9736 24.8229 13.2411 24.5637L15.7824 22.1008C16.1168 21.7768 16.6518 21.7768 16.9193 22.1008L17.1868 22.3601C17.5211 22.6841 17.5211 23.1378 17.1868 23.4619L14.6455 25.9247C14.378 26.184 14.0436 26.2488 13.7093 26.1191L11.8368 27.9339C11.9705 28.3227 11.9037 28.7116 11.6362 28.9709Z"
+              fill="currentColor" />
+          </svg>
+          <span class="logo-text">Reis <span class="accent-text">DGP</span></span>
+        </div>
+        <p class="footer-tagline">Open Metadata Management Platform</p>
+      </div>
+      <div class="footer-links">
+        <a href="docs.html">Documentation</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
