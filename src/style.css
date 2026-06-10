@@ -1363,7 +1363,7 @@ html.security-locked body > *:not(#security-overlay) {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+  background: radial-gradient(circle at 50% 50%, var(--bg-darker) 0%, var(--bg-dark) 100%);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--font-sans);
   padding: 1.5rem;
@@ -1375,31 +1375,31 @@ html.security-locked body > *:not(#security-overlay) {
   transform: scale(1.04);
 }
 
-/* Premium glassmorphic card container */
+/* Premium light glassmorphic card container */
 .security-card {
   width: 100%;
   max-width: 440px;
-  background: rgba(17, 24, 39, 0.65);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
   padding: 3rem 2.5rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-              0 0 40px rgba(220, 38, 38, 0.05);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06),
+              0 0 30px rgba(220, 38, 38, 0.03);
   text-align: center;
-  color: #f8fafc;
+  color: var(--text-main);
   transform: translateY(0);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .security-logo-container {
   display: inline-flex;
   padding: 1rem;
-  background: rgba(220, 38, 38, 0.08);
+  background: rgba(220, 38, 38, 0.06);
   border-radius: 16px;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.12);
   color: var(--accent);
 }
 
@@ -1408,14 +1408,14 @@ html.security-locked body > *:not(#security-overlay) {
   font-weight: 700;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .security-subtitle {
   font-size: 0.925rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 2rem;
   line-height: 1.5;
 }
@@ -1431,7 +1431,7 @@ html.security-locked body > *:not(#security-overlay) {
   display: block;
   font-size: 0.775rem;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1444,10 +1444,10 @@ html.security-locked body > *:not(#security-overlay) {
 .security-input {
   width: 100%;
   padding: 0.85rem 1rem 0.85rem 2.75rem;
-  background: rgba(3, 7, 18, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
@@ -1455,13 +1455,13 @@ html.security-locked body > *:not(#security-overlay) {
 }
 
 .security-input::placeholder {
-  color: #4b5563;
+  color: #94a3b8;
 }
 
 .security-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15), 0 0 15px rgba(220, 38, 38, 0.1);
-  background: rgba(3, 7, 18, 0.8);
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 10px rgba(220, 38, 38, 0.05);
+  background: #ffffff;
 }
 
 .security-input-wrapper i.ph-icon {
@@ -1469,7 +1469,7 @@ html.security-locked body > *:not(#security-overlay) {
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #4b5563;
+  color: #94a3b8;
   font-size: 1.2rem;
   transition: color 0.3s ease;
   pointer-events: none;
@@ -1487,7 +1487,7 @@ html.security-locked body > *:not(#security-overlay) {
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #4b5563;
+  color: #94a3b8;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1498,15 +1498,15 @@ html.security-locked body > *:not(#security-overlay) {
 }
 
 .password-toggle:hover {
-  color: #cbd5e1;
+  color: var(--text-main);
 }
 
 /* Error Alert Box */
 .security-error-msg {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
   border-radius: 10px;
-  color: #f87171;
+  color: #b91c1c;
   padding: 0.85rem 1rem;
   font-size: 0.85rem;
   margin-bottom: 1.5rem;
@@ -1545,7 +1545,7 @@ html.security-locked body > *:not(#security-overlay) {
 
 .security-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
 }
 
 .security-btn:active {
@@ -1562,12 +1562,34 @@ html.security-locked body > *:not(#security-overlay) {
 .security-card.shake {
   animation: secureShake 0.5s ease-in-out;
   border-color: rgba(239, 68, 68, 0.3);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-              0 0 40px rgba(239, 68, 68, 0.1);
+  box-shadow: 0 20px 40px rgba(239, 68, 68, 0.08),
+              0 0 30px rgba(239, 68, 68, 0.05);
 }
 
 @keyframes secureFadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Overrides */
+@media (max-width: 480px) {
+  #security-overlay {
+    padding: 1rem;
+  }
+  .security-card {
+    padding: 2.5rem 1.75rem;
+    border-radius: 20px;
+  }
+  .security-title {
+    font-size: 1.5rem;
+  }
+  .security-subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  .security-btn {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
 }
 
