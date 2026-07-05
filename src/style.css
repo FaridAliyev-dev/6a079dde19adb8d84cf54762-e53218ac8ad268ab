@@ -9,7 +9,7 @@
   --accent-secondary: #ef4444;
 
   /* Glass and Borders */
-  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.95);
   --glass-border: rgba(15, 23, 42, 0.08);
 
   /* Typography */
@@ -44,13 +44,13 @@ body {
   position: relative;
 }
 
-#lang-menu {
+.lang-menu {
   display: none;
   position: absolute;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  min-width: 100px;
+  top: 120%;
+  right: 0;
+  width: max-content;
+  min-width: 140px;
   background: var(--bg-darker);
   border: 1px solid var(--glass-border);
   border-radius: 12px;
@@ -253,7 +253,7 @@ body {
   align-items: center;
 }
 
-.lang-option {
+.lang-switcher .lang-option {
   padding: 0 0.8rem;
   height: 100%;
   display: flex;
@@ -270,14 +270,21 @@ body {
   min-width: 40px; /* Ensure enough space for 2-letter codes */
 }
 
-.lang-option:hover:not(.active) {
+.lang-switcher .lang-option:hover:not(.active) {
   color: var(--text-main);
   background: rgba(15, 23, 42, 0.04);
 }
 
-.lang-option.active {
+.lang-switcher .lang-option.active {
   color: #fff !important;
   font-size: 0.75rem !important; /* Ensure Russian doesn't change size */
+}
+
+/* Active style for new dropdown */
+#lang-menu .lang-option.active {
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--accent) !important;
+  font-size: 0.9rem !important;
 }
 
 .lang-slider {
@@ -331,7 +338,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.12;
+  opacity: 0.03;
 }
 
 .glow-1 {
@@ -507,7 +514,7 @@ body {
   left: var(--x, -100%);
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.02) 0%, transparent 60%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s;
   opacity: 0;
@@ -715,7 +722,7 @@ body {
   left: var(--x, -100%);
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.02) 0%, transparent 60%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s;
   opacity: 0;
@@ -786,7 +793,7 @@ body {
   transform: translate(-50%, -50%);
   width: 80%;
   height: 100%;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.02) 0%, transparent 70%);
   z-index: 0;
 }
 

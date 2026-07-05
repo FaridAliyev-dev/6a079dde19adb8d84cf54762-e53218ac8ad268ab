@@ -3,7 +3,7 @@ const translations = {
     navProb: "Problem",
     navFeat: "Features",
     navDoc: "Documentation",
-    navStart: "Get Started",
+    navStart: "Contact",
     heroBadge: "Metadata Management Platform",
     heroTitle: "The Context Layer for Your<br>Data & AI Stack",
     heroSub: "A centralized metadata platform to discover, govern, and observe every data asset in your organization. One graph to connect them all.",
@@ -177,7 +177,7 @@ const translations = {
     navProb: "Проблема",
     navFeat: "Возможности",
     navDoc: "Документация",
-    navStart: "Начать",
+    navStart: "Контакты",
     heroBadge: "Платформа управления метаданными",
     heroTitle: "Контекстный слой для вашего<br>стека данных и ИИ",
     heroSub: "Централизованная платформа метаданных для обнаружения, управления и мониторинга каждого информационного актива в вашей организации. Единый граф для связи всего.",
@@ -351,7 +351,7 @@ const translations = {
     navProb: "Problem",
     navFeat: "Xüsusiyyətlər",
     navDoc: "Sənədləşmə",
-    navStart: "Başlayın",
+    navStart: "Əlaqə",
     heroBadge: "Metadata İdarəetmə Platforması",
     heroTitle: "Data və AI Stekiniz üçün<br>Kontekst Qatı",
     heroSub: "Təşkilatınızdakı hər bir məlumat aktivini kəşf etmək, idarə etmək və müşahidə etmək üçün mərkəzləşdirilmiş metadata platforması. Hamısını birləşdirən vahid qraf.",
@@ -700,8 +700,35 @@ const domMapping = {
 
 export function initLanguageSwitcher() {
   const options = document.querySelectorAll('.lang-option');
-
   if (options.length === 0) return;
+
+  const dropdowns = document.querySelectorAll('.lang-dropdown');
+  dropdowns.forEach(dropdown => {
+    const btn = dropdown.querySelector('.lang-btn');
+    const menu = dropdown.querySelector('.lang-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // Close other dropdowns first
+        dropdowns.forEach(other => {
+          if (other !== dropdown) {
+            const otherMenu = other.querySelector('.lang-menu');
+            if (otherMenu) otherMenu.style.display = 'none';
+          }
+        });
+
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+  });
+
+  document.addEventListener('click', () => {
+    dropdowns.forEach(dropdown => {
+      const menu = dropdown.querySelector('.lang-menu');
+      if (menu) menu.style.display = 'none';
+    });
+  });
 
   // Set language
   const setLanguage = (lang) => {
@@ -714,6 +741,12 @@ export function initLanguageSwitcher() {
       } else {
         opt.classList.remove('active');
       }
+    });
+
+    // Update all language buttons
+    const buttons = document.querySelectorAll('.lang-btn');
+    buttons.forEach(btn => {
+      btn.innerHTML = `<i class="ph ph-globe"></i> ${lang.toUpperCase()}`;
     });
 
     // Apply translations
@@ -739,6 +772,12 @@ export function initLanguageSwitcher() {
     opt.addEventListener('click', (e) => {
       const selectedLang = e.target.getAttribute('data-lang');
       setLanguage(selectedLang);
+      
+      // Close all menus
+      dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.lang-menu');
+        if (menu) menu.style.display = 'none';
+      });
     });
   });
 
