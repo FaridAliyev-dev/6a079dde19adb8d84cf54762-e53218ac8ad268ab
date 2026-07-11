@@ -7,6 +7,7 @@
   --accent: #dc2626;
   --accent-glow: rgba(220, 38, 38, 0.15);
   --accent-secondary: #ef4444;
+  --accent-tertiary: #2D3748;
 
   /* Glass and Borders */
   --glass-bg: rgba(255, 255, 255, 0.95);
@@ -378,12 +379,15 @@ body {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 100px;
-  background: rgba(163, 59, 59, 0.1);
-  color: var(--accent);
+
+  background: rgba(45, 55, 72, 0.1);
+  color: #2D3748;
+
   font-size: 0.85rem;
   font-weight: 500;
+
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(163, 59, 59, 0.2);
+  border: 1px solid rgba(45, 55, 72, 0.2);
 }
 
 .hero-title {
@@ -537,11 +541,11 @@ body {
 
 .card-icon {
   font-size: 2.5rem;
-  color: var(--accent);
+  color: var(--accent-tertiary);
   margin-bottom: 1.5rem;
   display: inline-flex;
   padding: 1rem;
-  background: rgba(220, 38, 38, 0.06);
+  background: rgba(45, 55, 72, 0.08);
   border-radius: 12px;
 }
 
@@ -563,7 +567,7 @@ body {
 }
 
 .feature-list i {
-  color: var(--accent-secondary);
+  color: var(--accent-tertiary);
   margin-top: 0.25rem;
 }
 
